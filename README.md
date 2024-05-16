@@ -1,11 +1,19 @@
 SIMULATION AND IMPLEMENTATION OF  COMBINATIONAL LOGIC CIRCUITS
 
+
+
 AIM: 
+
  To simulate and synthesis ENCODER, DECODER, MULTIPLEXER, DEMULTIPLEXER, MAGNITUDE COMPARATOR using Xilinx ISE.
 
+
+
 APPARATUS REQUIRED:
+
 Xilinx 14.7
 Spartan6 FPGA
+
+
 
 **LOGIC DIAGRAM**
 
@@ -50,11 +58,173 @@ STEP:11  On the board, by giving required input, the LEDs starts to glow light, 
 
 VERILOG CODE
 
-   <<< TYPE YOUR VERILOG CODE >>>
 
-OUTPUT WAVEFORM
- <<< PASTE YOUR OUTPUT WAVEFORM >>>
+DEVELOPED BY    :  THRISHA G
 
-RESULT
+REGISTER NUMBER :  212221060286
+
+
+ENCODER : 
+
+
+~~~
+
+module encoder(a,y);
+input [7:0]a;
+output[2:0]y;
+or(y[2],a[6],a[5],a[4],a[3]);
+or(y[1],a[6],a[5],a[2],a[1]);
+or(y[0],a[6],a[4],a[2],a[0]);
+endmodule
+
+~~~
+
+
+
+DECODER : 
+
+
+~~~
+module decoder1(a,y);
+input [2:0]a;
+output[7:0]y;
+and(y[0],~a[2],~a[1],~a[0]);
+and(y[1],~a[2],~a[1],a[0]);
+and(y[2],~a[2],a[1],~a[0]);
+and(y[3],~a[2],a[1],a[0]);
+and(y[4],a[2],~a[1],~a[0]);
+and(y[5],a[2],~a[1],a[0]);
+and(y[6],a[2],a[1],~a[0]);
+and(y[7],a[2],a[1],a[0]);
+endmodule
+~~~
+
+
+
+MULTIPLEXER :
+
+
+~~~
+module mux(s,c,a);
+input [2:0]s;
+input [7:0]a;
+wire [7:0]w;
+output c;
+and(w[0],a[0],~s[2],~s[1],~s[0]);
+and(w[1],a[1],~s[2],~s[1],s[0]);
+and(w[2],a[2],~s[2],s[1],~s[0]);
+and(w[3],a[3],~s[2],s[1],s[0]);
+and(w[4],a[4],s[2],~s[1],~s[0]);
+and(w[5],a[5],s[2],~s[1],s[0]);
+and(w[6],a[6],s[2],s[1],~s[0]);
+and(w[7],a[7],s[2],s[1],s[0]);
+or (c,w[0],w[1],w[2],w[3],w[4],w[5],w[6],w[7]);
+endmodule
+~~~
+
+
+
+DEMULTIPLEXER :
+
+
+
+~~~
+module demux_8(s,a,y);
+input [2:0]s;
+input a;
+output [7:0]y;
+and(y[0],a,~s[2],~s[1],~s[0]);
+and(y[1],a,~s[2],~s[1],s[0]);
+and(y[2],a,~s[2],s[1],~s[0]);
+and(y[3],a,~s[2],s[1],s[0]);
+and(y[4],a,s[2],~s[1],~s[0]);
+and(y[5],a,s[2],~s[1],s[0]);
+and(y[6],a,s[2],s[1],~s[0]);
+and(y[7],a,s[2],s[1],s[0]);
+endmodule
+~~~
+
+
+
+MAGNITUDE COMPARATOR :
+
+
+
+~~~
+module comparator(a,b,eq,lt,gt);
+input [3:0] a,b;
+output reg eq,lt,gt;
+always @(a,b)
+begin
+ if (a==b)
+ begin
+  eq = 1'b1;
+  lt = 1'b0;
+  gt = 1'b0;
+ end
+ else if (a>b)
+ begin
+  eq = 1'b0;
+  lt = 1'b0;
+  gt = 1'b1;
+ end
+ else
+ begin
+  eq = 1'b0;
+  lt = 1'b1;
+  gt = 1'b0;
+ end
+end 
+endmodule
+~~~
+
+
+
+OUTPUT WAVEFORM :
+
+
+ENCODER :
+
+![image](https://github.com/thrishag/VLSI-LAB-EXP-2/assets/98105360/467b743a-998b-447a-a235-f8b86e4f2b6e)
+
+
+
+DECODER :
+
+
+![image](https://github.com/thrishag/VLSI-LAB-EXP-2/assets/98105360/f0636efc-1ef6-4f29-bf58-c293e5c2728e)
+
+
+
+MULTIPLEXER :
+
+
+
+![image](https://github.com/thrishag/VLSI-LAB-EXP-2/assets/98105360/b53b9018-142f-4ae2-b30a-e4f2ab1de57d)
+
+
+
+DEMULTIPLEXER :
+
+
+
+
+![image](https://github.com/thrishag/VLSI-LAB-EXP-2/assets/98105360/6a8a5709-6810-4c6a-a4cc-83f05d8be87b)
+
+
+
+MAGNITUDE COMPARATOR :
+
+
+
+
+![image](https://github.com/thrishag/VLSI-LAB-EXP-2/assets/98105360/623025bf-a143-48bf-b91c-24ffc373e80b)
+
+
+
+
+RESULT :
+
+simulation and synthesis ENCODER, DECODER, MULTIPLEXER, DEMULTIPLEXER, MAGNITUDE COMPARATOR using Xilinx ISE is verified.
 
 
