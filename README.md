@@ -180,6 +180,11 @@ endmodule
 
 
 
+
+
+
+
+
 OUTPUT WAVEFORM :
 
 
